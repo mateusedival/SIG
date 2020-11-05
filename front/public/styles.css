@@ -1,7 +1,12 @@
 #map {
     height: 500px;
     width: 100%;
-    border: 2px solid black;
+    border-radius: 15px;
+}
+
+#forms{
+    height: 500px;
+    width: 100%;
     border-radius: 15px;
 }
 
@@ -46,3 +51,11 @@ button:hover {
     background-color: darkgray;
     transition: 0.3s;
 }
+
+.botton {
+    height: 500px;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
