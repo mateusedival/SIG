@@ -1,12 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PokéFind</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC3yZ41FUzAQbV24nCozHRRXtsttaRCOw&callback=initMap">
+        </script>
+
+    <link rel="stylesheet" href="./styles.css">
+    <script>
+
+        /*const points = async () => {
+            const response = await fetch('', {method: 'GET'});
+            const points = await response.json(); 
+            return points
+        }*/
+        points = [
+            {
+                "nomePlanta" : "Laranjeira",
+                "nomeCien" : "Larajus",
+                "ponto" : { lat: -25.344, lng: 131.036 },
+                "data" : "11/02/2019",
+                "aluno" : {
+                            "ano" : 2017,
+                            "serie": 4,
+                            "idade": 21,
+                            "curso": "ciência da computação"
+                }
+        
+            },
+            {
+                "nomePlanta" : "Laranjeira",
+                "nomeCien" : "Larajus",
+                "ponto" : { lat: -25.344, lng: 131.036 },
+                "data" : "11/02/2019",
+                "aluno" : {
+                            "ano" : 2017,
+                            "serie": 4,
+                            "idade": 21,
+                            "curso": "ciência da computação"
+                }
+        
+            }
+        ]
+        
+       
+        function initMap() {
+            // The location of Uluru
+            const uluru = { lat: -25.344, lng: 131.036 };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
+        
+    </script>
 </head>
+
 <body>
-    
+
+        
+    <div class="header">
+        <button id="btnMap" > Mapa </button>
+        <button id="btnForms"> Cadastro</button>
+    </div>
+    <div id="map">T</div>
+
+
     <script src="./bundle.js"></script>
 </body>
+
 </html>
