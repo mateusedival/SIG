@@ -13,7 +13,7 @@
     <script>
 
         /*const points = async () => {
-            const response = await fetch('', {method: 'GET'});
+            const response = await fetch('localhost:8080/plantio', {method: 'GET'});
             const points = await response.json(); 
             return points
         }*/
@@ -69,18 +69,33 @@
 
         
     <div class="header">
-        <button id="btnMap" > Mapa </button>
-        <button id="btnForms"> Cadastro</button>
+        <button class="headerBtn" id="btnMap" > Mapa </button>
+        <button class="headerBtn" id="btnForms"> Cadastro</button>
+        <button class="headerBtn" id="btnView"> Visualização</button>
     </div>
     <div class="botton">
         <div id="map">T</div>
-        <div  id="forms">
+        <div id="forms">
             <label for="nome">nome</label>
             <input id="nome" type="text">
             <label for="idade">idade</label>
             <input id="idade" type="text">
             <label for="curso">curso</label>
-            <input id="curso" type="text">
+            
+            <select id="curso">
+                <option value="cc">Ciência da Computação</option>
+                <option value="ee">Engenharia elétrica</option>
+                <option value="es">Engenharia de Software</option>
+                <option value="ec">Engenharia da Computação</option>
+            </select>
+
+            <label for="serie">serie</label>
+            <input id="serie" type="text">
+            <label for="shp">Shape file</label> 
+            <input type="file" id="shp" multiple>
+            <button type="button" id="post"  ></button>
+        </div>
+        <div id="view">
             
         </div>
     </div>

@@ -1030,6 +1030,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/polyfill@npm:^7.12.1":
+  version: 7.12.1
+  resolution: "@babel/polyfill@npm:7.12.1"
+  dependencies:
+    core-js: ^2.6.5
+    regenerator-runtime: ^0.13.4
+  checksum: 299db4d4260ea0eacd357727418755a791cd152b642494ed15c18d029f55ea625017a6f1c398f7839e30b2d5a48cd6165e0c1f39ac1b81f863e15f056a149d54
+  languageName: node
+  linkType: hard
+
 "@babel/preset-env@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/preset-env@npm:7.12.1"
@@ -1437,6 +1447,8 @@ __metadata:
   dependencies:
     "@babel/cli": ^7.12.1
     "@babel/core": ^7.12.3
+    "@babel/plugin-transform-async-to-generator": ^7.12.1
+    "@babel/polyfill": ^7.12.1
     "@babel/preset-env": ^7.12.1
     babel-loader: ^8.1.0
     webpack: ^5.4.0
@@ -2223,6 +2235,13 @@ __metadata:
     browserslist: ^4.8.5
     semver: 7.0.0
   checksum: b263b5313f5b10807cbe2037bcff1d0abc3611d8600ca29a742695eb21411f76a8c762db00a04d684a3f80645252aeb74b24542c157ec24697edd3ae7afcce87
+  languageName: node
+  linkType: hard
+
+"core-js@npm:^2.6.5":
+  version: 2.6.11
+  resolution: "core-js@npm:2.6.11"
+  checksum: 39ad00b46deaecf344470ef940949b58c4b15e71608a98e8ac7429cd16e485b829f9720d44a44b5f4dee966ff04a18baf5283feb8aaba2cb59ce2c25fa72b88c
   languageName: node
   linkType: hard
 

@@ -38,16 +38,16 @@ h3 {
     align-items: center;
     margin: 0;
 }
-button {
+.headerBtn {
     height: 120px;
-    width: 37%;
+    width: 30%;
     border-radius: 15px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
     background-color: whitesmoke;
     border: 2px solid black;
 }
-button:hover {
+.headerBtn:hover {
     background-color: darkgray;
     transition: 0.3s;
 }
@@ -58,4 +58,3 @@ button:hover {
     border: 2px solid black;
     border-radius: 15px;
 }
-
