@@ -10,3 +10,4 @@ export function createDiv(){
     div.appendChild(text)
     return div;
 }
+

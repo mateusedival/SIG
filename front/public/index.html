@@ -76,28 +76,92 @@
     <div class="botton">
         <div id="map">T</div>
         <div id="forms">
-            <label for="nome">nome</label>
-            <input id="nome" type="text">
-            <label for="idade">idade</label>
-            <input id="idade" type="text">
-            <label for="curso">curso</label>
+            <div class="centerV">
+                <div class="centerH">
+                    <div class="input">
+                        <label for="nome">Nome</label>
+                         <input id="nome" type="text">
+                    </div>
+                    <div class="input">
+                        <label for="idade">Idade</label>
+                        <input id="idade" type="text">  
+                    </div>
+                    
+                </div>
+                <div class="centerH">
+                    <div class="input">
+                        <label for="curso">Curso</label>
+                        <select id="curso">
+                            <option value="cc">Ciência da Computação</option>
+                            <option value="ee">Engenharia elétrica</option>
+                            <option value="es">Engenharia de Software</option>
+                            <option value="ec">Engenharia da Computação</option>
+                        </select>
+                    </div>
+                   <div class="input">
+                        <label for="serie">Série</label>
+                        <input id="serie" type="text">
+                   </div> 
+                </div>
+                <div class="centerH">
+                    <div class="input">
+                        <label for="shp">Shape file</label> 
+                        <input type="file" id="shp" multiple>
+                    </div>   
+                </div>
+                <div class="centerH">
+                    <button type="button" id="post"  ></button>
+                </div>
+              
+            </div>
             
-            <select id="curso">
-                <option value="cc">Ciência da Computação</option>
-                <option value="ee">Engenharia elétrica</option>
-                <option value="es">Engenharia de Software</option>
-                <option value="ec">Engenharia da Computação</option>
-            </select>
-
-            <label for="serie">serie</label>
-            <input id="serie" type="text">
-            <label for="shp">Shape file</label> 
-            <input type="file" id="shp" multiple>
-            <button type="button" id="post"  ></button>
         </div>
         <div id="view">
             
         </div>
+        <div id="edit">
+            <div class="centerV">
+                <div class="centerH">
+                    <div class="input">
+                        <label for="nome">Nome</label>
+                         <input id="nomeEdit" type="text">
+                    </div>
+                    <div class="input">
+                        <label for="idade">Idade</label>
+                        <input id="idadeEdit" type="text">  
+                    </div>
+                    
+                </div>
+                <div class="centerH">
+                    <div class="input">
+                        <label for="curso">Curso</label>
+                        <select id="cursoEdit">
+                            <option value="cc">Ciência da Computação</option>
+                            <option value="ee">Engenharia elétrica</option>
+                            <option value="es">Engenharia de Software</option>
+                            <option value="ec">Engenharia da Computação</option>
+                        </select>
+                    </div>
+                   <div class="input">
+                        <label for="serie">Série</label>
+                        <input id="serieEdit" type="text">
+                   </div> 
+                </div>
+                <div class="centerH">
+                    <div class="input">
+                        <label for="shpEdit">Shape file</label> 
+                        <input type="file" id="shp" multiple>
+                    </div>   
+                </div>
+                <div class="centerH">
+                    <button type="button" id="postEdit">Atualizar</button>
+                    <button type="button" id="cancelEdit">Cancelar</button>
+                </div>
+              
+            </div>
+            
+        </div>
+        
     </div>
     
 
