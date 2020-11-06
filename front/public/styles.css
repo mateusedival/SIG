@@ -5,7 +5,7 @@
 }
 
 #forms{
-    height: 500px;
+    height: auto;
     width: 100%;
     border-radius: 15px;
 }
@@ -53,7 +53,7 @@ h3 {
 }
 
 .botton {
-    height: 500px;
+    height: auto;
     width: 100%;
     border: 2px solid black;
     border-radius: 15px;
