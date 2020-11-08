@@ -1,5 +1,3 @@
-
-
 btnMap = document.querySelector("#btnMap");
 btnForms = document.querySelector('#btnForms');
 btnView = document.querySelector('#btnView');
@@ -22,7 +20,7 @@ cancelEdit = document.querySelector('#cancelEdit')
 
 
 
-plantios = null
+plantios = []
 update = 1;
 
 let state = 'map';
@@ -166,6 +164,7 @@ function setView()
 {
     if(plantio != null && update == 0)
         return
+
     const points = async () => {
         const response = await fetch('localhost:8080/plantio', {method: 'GET'});
         const points = await response.json(); 
@@ -189,6 +188,7 @@ function editClick() {
 
 function removeClick() {
     this.parentNode.remove();
+
 }
 
 
