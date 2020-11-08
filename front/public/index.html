@@ -17,39 +17,35 @@
             const points = await response.json(); 
             return points
         }*/
-        points = [
-            {
-                "nomePlanta" : "Laranjeira",
-                "nomeCien" : "Larajus",
-                "ponto" : { lat: -25.344, lng: 131.036 },
-                "data" : "11/02/2019",
-                "aluno" : {
-                            "ano" : 2017,
-                            "serie": 4,
-                            "idade": 21,
-                            "curso": "ciência da computação"
+        let points = [{
+            "id": 0,
+            "nome": "Laranjeira",
+            "nomeCientifico": "laaaaaaaaaaa",
+            "data": "2020-11-02T03:00:00.000+00:00",
+            "pontoX": -654764.64764,
+            "pontoY": -4576747.4535,
+            "aluno" : {
+                "id": 7,
+                "nome": "André",
+                "idade": 29,
+                "serie": 1,
+                "curso" : {
+                    "id": 3,
+                    "nome": "Engenharia"
                 }
-        
-            },
-            {
-                "nomePlanta" : "Laranjeira",
-                "nomeCien" : "Larajus",
-                "ponto" : { lat: -25.344, lng: 131.036 },
-                "data" : "11/02/2019",
-                "aluno" : {
-                            "ano" : 2017,
-                            "serie": 4,
-                            "idade": 21,
-                            "curso": "ciência da computação"
-                }
-        
             }
-        ]
+        }]
+        console.log(points)
         
        
         function initMap() {
+
+            const infowindow = new google.maps.InfoWindow({
+                content: "<p>Aqui</p>",
+            });
+
             // The location of Uluru
-            const uluru = { lat: -25.344, lng: 131.036 };
+            const uluru = { lat: -24.9633588,lng: -53.4514861};
             // The map, centered at Uluru
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 4,
@@ -60,6 +56,10 @@
                 position: uluru,
                 map: map,
             });
+            marker.addListener("click", () => {
+                infowindow.open(map, marker);
+            });
+
         }
         
     </script>
@@ -123,34 +123,22 @@
             <div class="centerV">
                 <div class="centerH">
                     <div class="input">
-                        <label for="nome">Nome</label>
+                        <label for="nomeEdit">Nome</label>
                          <input id="nomeEdit" type="text">
                     </div>
                     <div class="input">
-                        <label for="idade">Idade</label>
-                        <input id="idadeEdit" type="text">  
+                        <label for="nomeCientificoEdit">Nome Cientifico</label>
+                        <input id="nomeCientificoEdit" type="text">  
                     </div>
-                    
                 </div>
                 <div class="centerH">
                     <div class="input">
-                        <label for="curso">Curso</label>
-                        <select id="cursoEdit">
-                            <option value="cc">Ciência da Computação</option>
-                            <option value="ee">Engenharia elétrica</option>
-                            <option value="es">Engenharia de Software</option>
-                            <option value="ec">Engenharia da Computação</option>
-                        </select>
+                        <label for="dataEdit">Data</label>
+                        <input id="dataEdit" type="text">  
                     </div>
-                   <div class="input">
-                        <label for="serie">Série</label>
-                        <input id="serieEdit" type="text">
-                   </div> 
-                </div>
-                <div class="centerH">
                     <div class="input">
                         <label for="shpEdit">Shape file</label> 
-                        <input type="file" id="shp" multiple>
+                        <input type="file" id="shpEdit" multiple>
                     </div>   
                 </div>
                 <div class="centerH">

@@ -1,13 +1,18 @@
-
-export function createDiv(){
-    let div = document.createElement("div").style.cssText = "border: 2px solid black; width: 100%; display: flex; justify-content: center; border-radius: 15px;";
-
-    let edit = document.createElement("button").style.cssText = "border: 1px solid black; width: 15%; ";
-    let remove = document.createElement("button").style.cssText = "border: 1px solid black; width: 15%; ";
-    let text = document.createElement("p").style.cssText = "width: 70%;  border-radius: 15px;";
-    div.appendChild(edit)
-    div.appendChild(remove)
-    div.appendChild(text)
-    return div;
+let plantio = {
+    "id": 0,
+    "nome": "Laranjeira",
+    "nomeCientifico": "laaaaaaaaaaa",
+    "data": "2020-11-02T03:00:00.000+00:00",
+    "pontoX": -654764.64764,
+    "pontoY": -4576747.4535,
+    "aluno" : {
+        "id": 7,
+        "nome": "André",
+        "idade:" 29,
+        "serie": 1,
+        "curso" : {
+            "id": 3,
+            "nome": "Engenharia"
+        }
+    }
 }
-
