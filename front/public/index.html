@@ -22,8 +22,26 @@
             "nome": "Laranjeira",
             "nomeCientifico": "laaaaaaaaaaa",
             "data": "2020-11-02T03:00:00.000+00:00",
-            "pontoX": -654764.64764,
-            "pontoY": -4576747.4535,
+            "pontoX": -24.9633588,
+            "pontoY": -53.4514861,
+            "aluno" : {
+                "id": 7,
+                "nome": "André",
+                "idade": 29,
+                "serie": 1,
+                "curso" : {
+                    "id": 3,
+                    "nome": "Engenharia"
+                }
+            }
+        },
+        {
+            "id": 1,
+            "nome": "Jabuticabeira",
+            "nomeCientifico": "laaaaaaaaaaa",
+            "data": "2020-11-02T03:00:00.000+00:00",
+            "pontoX": -24.9733588,
+            "pontoY": -53.4514861,
             "aluno" : {
                 "id": 7,
                 "nome": "André",
@@ -35,30 +53,36 @@
                 }
             }
         }]
-        console.log(points)
         
        
         function initMap() {
 
-            const infowindow = new google.maps.InfoWindow({
-                content: "<p>Aqui</p>",
-            });
-
             // The location of Uluru
-            const uluru = { lat: -24.9633588,lng: -53.4514861};
+            const center = { lat: -24.9633588,lng: -53.4514861};
             // The map, centered at Uluru
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 4,
-                center: uluru,
+                zoom: 13,
+                center: center,
             });
-            // The marker, positioned at Uluru
-            const marker = new google.maps.Marker({
-                position: uluru,
-                map: map,
-            });
-            marker.addListener("click", () => {
-                infowindow.open(map, marker);
-            });
+           
+            points.forEach((x) => {
+                const pos = {lat: x.pontoX, lng: x.pontoY};
+                const marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                });
+                const infowindow = new google.maps.InfoWindow({
+
+                    content: `<p>${x.nome}\n<p><p>${x.nomeCientifico}\n</p>`+
+                             `<p>${x.data}\n<p><p>${x.aluno.nome}</p>`,
+                });
+
+                marker.addListener("click", () => {
+                    infowindow.open(map, marker);
+                });
+
+            })
+           
 
         }
         

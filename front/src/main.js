@@ -22,7 +22,8 @@ cancelEdit = document.querySelector('#cancelEdit')
 
 
 
-plantios = []
+plantios = null
+update = 1;
 
 let state = 'map';
 
@@ -88,6 +89,7 @@ btnView.onclick = function() {
     }
     state = 'view'
     view.style.display = 'block';
+    //setView();
     let div = createDiv();
     plantios.push(div)
     view.appendChild(div)
@@ -137,6 +139,7 @@ post.onclick = async function() {
         method: 'POST',
         body: plantio   
     })
+    update = 1;
 }
 
 function createDiv(){
@@ -144,9 +147,12 @@ function createDiv(){
     div.setAttribute("class","plantio")
     let edit = document.createElement("button");
     edit.setAttribute("class","updateBtn")
+    edit.textContent = "Editar"
     edit.onclick = editClick;
     let remove = document.createElement("button");
     remove.setAttribute("class","updateBtn")
+    remove.textContent = "Excluir"
+    remove.onclick = removeClick;
     let text = document.createElement("p");
     text.setAttribute("class","textUpdate")
     div.appendChild(text)
@@ -158,6 +164,8 @@ function createDiv(){
 
 function setView()
 {
+    if(plantio != null && update == 0)
+        return
     const points = async () => {
         const response = await fetch('localhost:8080/plantio', {method: 'GET'});
         const points = await response.json(); 
@@ -168,16 +176,21 @@ function setView()
         plantio.push(div)
         view.appendChild(div)
     })
-
+    update = 0;
 }
 
-function editClick(){
+function editClick() {
     view.style.display = 'none'
     state = 'edit'
 
     edit.style.display = 'block'
     setDisplay(edit.children,'block')
 }
+
+function removeClick() {
+    this.parentNode.remove();
+}
+
 
 cancelEdit.onclick = function() {
     edit.style.display = 'none'
