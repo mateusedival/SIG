@@ -1,23 +1,21 @@
-btnMap = document.querySelector("#btnMap");
-btnForms = document.querySelector('#btnForms');
-btnView = document.querySelector('#btnView');
-maps = document.querySelector('#map')
-forms = document.querySelector('#forms')
-view = document.querySelector('#view')
-post = document.querySelector('#post')
-nomeInput = document.querySelector('#nome')
-idadeInput = document.querySelector('#idade')
-cursoInput = document.querySelector('#curso')
-serieInput = document.querySelector('#serie')
-shapeInput = document.querySelector('#shp')
-edit = document.querySelector('#edit');
-nomeEdit = document.querySelector('#nomeEdit')
-nomeCientificoEdit = document.querySelector('#nomeCientificoEdit')
-dataEdit = document.querySelector('#dataEdit')
-shapeEdit = document.querySelector('#shpEdit')
-postEdit = document.querySelector('#postEdit')
-cancelEdit = document.querySelector('#cancelEdit')
-
+const btnMap = document.querySelector("#btnMap");
+const btnForms = document.querySelector('#btnForms');
+const btnView = document.querySelector('#btnView');
+const maps = document.querySelector('#map')
+const forms = document.querySelector('#forms')
+const view = document.querySelector('#view')
+const post = document.querySelector('#post')
+let nomeInput = document.querySelector('#nome')
+let idadeInput = document.querySelector('#idade')
+let cursoInput = document.querySelector('#curso')
+let serieInput = document.querySelector('#serie')
+let shapeInput = document.querySelector('#shp')
+const edit = document.querySelector('#edit');
+let nomeEdit = document.querySelector('#nomeEdit')
+let nomeCientificoEdit = document.querySelector('#nomeCientificoEdit')
+let dataEdit = document.querySelector('#dataEdit')
+const postEdit = document.querySelector('#postEdit')
+const cancelEdit = document.querySelector('#cancelEdit')
 
 
 plantios = []
@@ -54,7 +52,7 @@ btnMap.onclick = function() {
 btnForms.onclick = function() {
     if(state = 'map')
     {
-        map.style.display = 'none';
+        maps.style.display = 'none';
     }
     if(state = 'view')
     {
@@ -73,7 +71,7 @@ btnForms.onclick = function() {
 btnView.onclick = function() {
     if(state = 'map')
     {
-        map.style.display = 'none';
+        maps.style.display = 'none';
     }
     if(state = 'forms')
     {
@@ -87,10 +85,7 @@ btnView.onclick = function() {
     }
     state = 'view'
     view.style.display = 'block';
-    //setView();
-    let div = createDiv();
-    plantios.push(div)
-    view.appendChild(div)
+    setView();
 }
 
 function setDisplay(array,state) {
@@ -111,11 +106,10 @@ function getInputValue(){
     return inputs;
 }
 
-function setInputValue(value,div){
-    for(i = 0; i < div.length; i++)
-    {
-        div[i].value = value[i]
-    }
+function setInputValue(plantio){
+   nomeEdit.value = String(plantio.nome)
+   nomeCientificoEdit.value = String(plantio.nomeCientifico)
+   dataEdit.value = String(plantio.data)
 }
 
 post.onclick = async function() {
@@ -140,9 +134,11 @@ post.onclick = async function() {
     update = 1;
 }
 
-function createDiv(){
+function createDiv(point){
+
     let div = document.createElement("div");
     div.setAttribute("class","plantio")
+    div.setAttribute("idPlantio",point.id)
     let edit = document.createElement("button");
     edit.setAttribute("class","updateBtn")
     edit.textContent = "Editar"
@@ -153,6 +149,7 @@ function createDiv(){
     remove.onclick = removeClick;
     let text = document.createElement("p");
     text.setAttribute("class","textUpdate")
+    text.textContent = point.nome 
     div.appendChild(text)
     div.appendChild(edit)
     div.appendChild(remove)
@@ -162,26 +159,33 @@ function createDiv(){
 
 function setView()
 {
-    if(plantio != null && update == 0)
+    if(plantios.length != 0 && update == 0)
         return
 
-    const points = async () => {
-        const response = await fetch('localhost:8080/plantio', {method: 'GET'});
-        const points = await response.json(); 
-        return points
-    }
-    points.forEach((point) => {
-        let div = mapDiv(createDiv(),point);
-        plantio.push(div)
-        view.appendChild(div)
+    const URL_TO_FETCH = 'http://25.7.142.197:8080/plantio/';
+
+    fetch(URL_TO_FETCH)
+    .then(function (response) {
+        response.json().then(function (points) {
+            points.forEach((point) => {
+                let div = createDiv(point);
+                plantios.push(point)
+                view.appendChild(div)
+            })
+        });
     })
+    .catch(function (err) {
+        console.error('Failed retrieving information', err);
+    });
+    
     update = 0;
 }
 
 function editClick() {
     view.style.display = 'none'
     state = 'edit'
-
+    const plantio = plantios.filter((x) => {return x.id == this.parentNode.getAttribute("idplantio")});
+    setInputValue(plantio[0])
     edit.style.display = 'block'
     setDisplay(edit.children,'block')
 }
