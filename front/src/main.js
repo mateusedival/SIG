@@ -5,6 +5,17 @@ const maps = document.querySelector('#map')
 const forms = document.querySelector('#forms')
 const view = document.querySelector('#view')
 const post = document.querySelector('#post')
+
+const alunoBtn = document.querySelector("#alunoBtn")
+const cursoBtn = document.querySelector("#cursoBtn")
+const shapeBtn = document.getElementById("shapeBtn")
+let alunoForms = document.getElementById("alunoForms")
+let cursoForms = document.getElementById("cursoForms")
+let shapeForms = document.querySelector("#shapeForms")
+const cursoPost = document.getElementById("cursoPost")
+const alunoPost = document.getElementById("alunoPost")
+const shapePost = document.getElementById("shapePost")
+
 let nomeInput = document.querySelector('#nome')
 let idadeInput = document.querySelector('#idade')
 let cursoInput = document.querySelector('#curso')
@@ -22,6 +33,7 @@ plantios = []
 update = 1;
 
 let state = 'map';
+let formsState = 'none';
 
 edit.style.display = 'none'
 forms.style.display='none'
@@ -34,7 +46,7 @@ btnMap.onclick = function() {
     if(state = 'forms')
     {
         forms.style.display = 'none';
-        setDisplay(forms.children,'none')
+        btnDisplay('none')
     }
     if(state = 'view')
     {
@@ -65,7 +77,7 @@ btnForms.onclick = function() {
     }
     state = 'forms'
     forms.style.display = 'block';
-    setDisplay(forms.children,'block')
+    btnDisplay('block')
 }
 
 btnView.onclick = function() {
@@ -76,7 +88,7 @@ btnView.onclick = function() {
     if(state = 'forms')
     {
         forms.style.display = 'none';
-        setDisplay(forms.children,'none')
+        btnDisplay('none')
     }
     if(state = 'edit')
     {
@@ -86,6 +98,51 @@ btnView.onclick = function() {
     state = 'view'
     view.style.display = 'block';
     setView();
+}
+
+function btnDisplay(display){
+    alunoBtn.style.display = display
+    cursoBtn.style.display = display
+    shapeBtn.style.display = display
+}
+
+alunoBtn.onclick = setForms;
+cursoBtn.onclick = setForms;
+shapeBtn.onclick = setForms;
+
+function setForms() {
+    if(formsState == 'aluno')
+        alunoForms.style.display = 'none';
+    if(formsState == 'curso')
+        cursoForms.style.display = 'none'
+    if(formsState == 'shape')
+        shapeForms.style.display = 'none'
+
+    let id = this.getAttribute("id");
+    if(id == "alunoBtn")
+    {
+        alunoForms.style.display = 'block';
+        formsState = 'aluno'
+    }
+    else if(id == "cursoBtn")
+    {
+        cursoForms.style.display = 'block'
+        formsState = 'curso'
+    }
+    else
+    {
+        shapeForms.style.display = 'block';
+        formsState = 'shape'
+    }
+}
+function cancelForms() {
+    if(formsState = 'aluno')
+         alunoForms.style.display = 'none';
+    else if(id == "cursoBtn")
+        cursoForms.style.display = 'none'
+    else
+        shapeForms.style.display = 'none';
+    formsState = 'none'
 }
 
 function setDisplay(array,state) {

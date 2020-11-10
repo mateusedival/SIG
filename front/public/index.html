@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>PokéFind</title>
+    <title>SIG</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script defer
@@ -65,47 +65,55 @@
     <div class="botton">
         <div id="map">T</div>
         <div id="forms">
-            <div class="centerV">
-                <div class="centerH">
-                    <div class="input">
-                        <label for="nome">Nome</label>
-                         <input id="nome" type="text">
+            <button id="cursoBtn" >Curso</button>
+            <button id="alunoBtn" >Aluno</button>
+            <button id="shapeBtn" >Shape</button>
+            <div id="alunoForms">
+                <div class="centerV">
+                    <div class="centerH">
+                        <div class="input">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text">
+                        </div>
+                        <div class="input">
+                            <label for="idade">Idade</label>
+                            <input id="idade" type="text">  
+                        </div>
+                        <div class="input">
+                            <label for="serie">Série</label>
+                            <input id="serie" type="text">
+                        </div> 
                     </div>
-                    <div class="input">
-                        <label for="idade">Idade</label>
-                        <input id="idade" type="text">  
+                    <div class="centerH">
+                        <button type="button" id="cursoPost"  >Cadastrar</button>
                     </div>
-                    
-                </div>
-                <div class="centerH">
-                    <div class="input">
-                        <label for="curso">Curso</label>
-                        <select id="curso">
-                            <option value="cc">Ciência da Computação</option>
-                            <option value="ee">Engenharia elétrica</option>
-                            <option value="es">Engenharia de Software</option>
-                            <option value="ec">Engenharia da Computação</option>
-                        </select>
+                </div>   
+            </div>
+            <div id="shapeForms" >
+                <div class="centerV">
+                    <div class="centerH">
+                        <div class="input">
+                            <label for="shp">Shape file</label> 
+                            <input type="file" id="shp" multiple>
+                        </div>   
                     </div>
-                   <div class="input">
-                        <label for="serie">Série</label>
-                        <input id="serie" type="text">
-                   </div> 
+                    <div class="centerH">
+                        <button type="button" id="alunoPost"  >Cadastrar</button>
+                    </div>
                 </div>
-                <div class="centerH">
-                    <div class="input">
-                        <label for="shp">Shape file</label> 
-                        <input type="file" id="shp" multiple>
-                    </div>   
-                    <div class="input">
-                        <label for="img">Imagem</label> 
-                        <input type="file" id="img" multiple>
-                    </div> 
+            </div>
+            <div id="cursoForms">
+                <div class="centerV">
+                    <div class="centerH">
+                        <div class="input">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text">
+                        </div> 
+                    </div>
+                    <div class="centerH">
+                        <button type="button" id="shapePost"  >Cadastrar</button>
+                    </div>
                 </div>
-                <div class="centerH">
-                    <button type="button" id="post"  ></button>
-                </div>
-              
             </div>
             
         </div>
