@@ -63,7 +63,7 @@ h3 {
     width: 15%;
 }
 
-.plantio {
+.Element {
     border: 1px solid black; 
     height: 50px; width: 100%; 
     display: flex; 

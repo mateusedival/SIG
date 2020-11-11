@@ -14,7 +14,7 @@
        var map;
         function initMap() {
         
-            const center = { lat: -6075422.07154195,lng: -2937868.99220626};
+            const center = { lat: -24.9434028,lng: -53.4230169};
             
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 13,
@@ -72,20 +72,24 @@
                 <div class="centerV">
                     <div class="centerH">
                         <div class="input">
-                            <label for="nome">Nome</label>
-                            <input id="nome" type="text">
+                            <label for="nomeAluno">Nome</label>
+                            <input id="nomeAluno" type="text">
                         </div>
                         <div class="input">
-                            <label for="idade">Idade</label>
-                            <input id="idade" type="text">  
+                            <label for="idadeAluno">Idade</label>
+                            <input id="idadeAluno" type="text">  
                         </div>
                         <div class="input">
-                            <label for="serie">Série</label>
-                            <input id="serie" type="text">
+                            <label for="serieAluno">Série</label>
+                            <input id="serieAluno" type="text">
                         </div> 
+                        <div class="input">
+                            <label for="cursoSelectForms">Curso</label>
+                            <select id="cursoSelectForms"></select>
+                        </div>
                     </div>
                     <div class="centerH">
-                        <button type="button" id="cursoPost"  >Cadastrar</button>
+                        <button type="button" id="alunoPost"  >Cadastrar</button>
                     </div>
                 </div>   
             </div>
@@ -98,7 +102,7 @@
                         </div>   
                     </div>
                     <div class="centerH">
-                        <button type="button" id="alunoPost"  >Cadastrar</button>
+                        <button type="button" id="shapePost"  >Cadastrar</button>
                     </div>
                 </div>
             </div>
@@ -106,45 +110,88 @@
                 <div class="centerV">
                     <div class="centerH">
                         <div class="input">
-                            <label for="nome">Nome</label>
-                            <input id="nome" type="text">
+                            <label for="nomeCurso">Nome</label>
+                            <input id="nomeCurso" type="text">
                         </div> 
                     </div>
                     <div class="centerH">
-                        <button type="button" id="shapePost"  >Cadastrar</button>
+                        <button type="button" id="cursoPost"  >Cadastrar</button>
                     </div>
                 </div>
             </div>
             
         </div>
         <div id="view">
-            
+            <div id="viewBtns">
+                <button id="plantioViewBtn">Plantios</button>
+                <button id="alunoViewBtn">Alunos</button>
+                <button id="cursoViewBtn">Cursos</button>
+            </div>
+            <div id="cursoView"></div>
+            <div id="alunoView"></div>
+            <div id="plantioView"></div>
         </div>
         <div id="edit">
-            <div class="centerV">
-                <div class="centerH">
-                    <div class="input">
-                        <label for="nomeEdit">Nome</label>
-                         <input id="nomeEdit" type="text">
+            <div id="plantioEdit">
+                <div class="centerV">
+                    <div class="centerH">
+                        <div class="input">
+                            <label for="nomePlantioEdit">Nome</label>
+                             <input id="nomePlantioEdit" type="text">
+                        </div>
+                        <div class="input">
+                            <label for="nomeCientificoEdit">Nome Cientifico</label>
+                            <input id="nomeCientificoEdit" type="text">  
+                        </div>
                     </div>
-                    <div class="input">
-                        <label for="nomeCientificoEdit">Nome Cientifico</label>
-                        <input id="nomeCientificoEdit" type="text">  
+                    <div class="centerH">
+                        <label for="alunoSelectEdit">Aluno</label>
+                        <select id="alunoSelectEdit"></select>
+                    </div>
+                    <div class="centerH">
+                        <button type="button" id="plantioEditBtn">Atualizar</button>
+                        <button type="button" id="plantioCancelBtn">Cancelar</button>
                     </div>
                 </div>
-                <div class="centerH">
-                    <div class="input">
-                        <label for="dataEdit">Data</label>
-                        <input id="dataEdit" type="text">  
-                    </div>
-                </div>
-                <div class="centerH">
-                    <button type="button" id="postEdit">Atualizar</button>
-                    <button type="button" id="cancelEdit">Cancelar</button>
-                </div>
-              
             </div>
-            
+            <div id="alunoEdit">
+                <div class="centerH">
+                    <div class="input">
+                        <label for="nomeAlunoEdit">Nome</label>
+                         <input id="nomeAlunoEdit" type="text">
+                    </div>
+                    <div class="input">
+                        <label for="idadeAlunoEdit">Idade</label>
+                         <input id="idadeAlunoEdit" type="text">
+                    </div>
+                </div>
+                <div class="centerH">
+                    <div class="input">
+                        <label for="serieAlunoEdit">Serie</label>
+                         <input id="serieAlunoEdit" type="text">
+                    </div>
+                    <div class="input">
+                        <label for="cursoSelectEdit">Curso</label>
+                        <select id="cursoSelectEdit"></select>
+                    </div>
+                </div>
+                <div class="centerH">
+                    <button type="button" id="alunoEditBtn">Atualizar</button>
+                    <button type="button" id="alunoCancelBtn">Cancelar</button>
+                </div>
+            </div>
+            <div id="cursoEdit">
+                <div class="centerH">
+                    <div class="input">
+                        <label for="nomeCursoEdit">Nome</label>
+                         <input id="nomeCursoEdit" type="text">
+                    </div>
+                </div>
+                <div class="centerH">
+                    <button type="button" id="cursoEditBtn">Atualizar</button>
+                    <button type="button" id="cursoCancelBtn">Cancelar</button>
+                </div>
+            </div>
         </div>
         
     </div>
