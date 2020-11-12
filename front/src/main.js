@@ -4,6 +4,9 @@ const btnView = document.querySelector('#btnView');
 const maps = document.querySelector('#map')
 const forms = document.querySelector('#forms')
 const view = document.querySelector('#view')
+const poligono = document.querySelector('div#poligono')
+const poligonoSelect = document.querySelector("select#poligonoSelect")
+const isInside = document.querySelector("button#isInside")
 
 const alunoBtn = document.querySelector("#alunoBtn")
 const cursoBtn = document.querySelector("#cursoBtn")
@@ -51,6 +54,7 @@ let idadeAlunoEdit = document.querySelector("input#idadeAlunoEdit")
 let serieAlunoEdit = document.querySelector("input#serieAlunoEdit")
 let cursoSelectEdit = document.querySelector("select#cursoSelectEdit")
 const cursoEditBtn = document.querySelector("button#cursoEditBtn")
+const foto = document.querySelector("input#foto")
 
 plantios = []
 cursos = []
@@ -65,6 +69,7 @@ let state = 'map';
 let formsState = 'none';
 let viewState = 'plantio'
 
+poliStart()
 edit.style.display = 'none'
 forms.style.display='none'
 view.style.display='none'
@@ -90,12 +95,15 @@ btnMap.onclick = function() {
     }
     state = 'map'
     maps.style.display = 'block';
+    poligono.style.display = 'block'
+    poliStart()
 }
 
 btnForms.onclick = function() {
     if(state = 'map')
     {
         maps.style.display = 'none';
+        poligono.style.display = 'none'
     }
     if(state = 'view')
     {
@@ -116,6 +124,7 @@ btnView.onclick = function() {
     if(state = 'map')
     {
         maps.style.display = 'none';
+        poligono.style.display = 'none'
     }
     if(state = 'forms')
     {
@@ -291,6 +300,12 @@ function getElements()
     let text = document.createElement("p");
     text.setAttribute("class","textUpdate")
     text.textContent = element.nome 
+    if(viewState == "plantio")
+    {
+        let i = document.createElement("i");
+        i.textContent = ` - ${element.nomeCientifico}`
+        text.appendChild(i)
+    }
 
     div.appendChild(text)
     div.appendChild(edit)
@@ -483,6 +498,10 @@ shapePost.onclick = function(){
     const URL_TO_FETCH = "http://25.7.142.197:8080/plantio/file"
     fetch(URL_TO_FETCH, {
         method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         body: fileList
     });
     update["plantio"] = 1;
@@ -499,12 +518,36 @@ plantioEditBtn.onclick = () => {
     const URL_TO_FETCH = "http://25.7.142.197:8080/plantio/"
     fetch(URL_TO_FETCH, {
         method: 'PUT',
+        mode: 'cors',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(plantio)
     });
+    console.log(foto.files.length)
+    if(foto.files.length > 0)
+    {
+        const URL= `http://25.7.142.197:8080/foto/plantio/${plantio.id}`
+        const fileList = new FormData();
+
+        for(file of foto.files)
+            fileList.append('fileList', file)
+        fetch(URL_TO_FETCH, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: fileList
+        })
+        .catch(function (err) {
+            console.error('Failed retrieving information', err);
+        });
+        foto.innerHTML = ""
+    }
+    
     update["plantio"] = 1
     cancel()
 
@@ -575,5 +618,57 @@ function removeClick() {
     if(viewState = "aluno")
         alunos = alunos.filter((x) => (x.id != element[0].id))
     console.log(cursos)
+    
+}
+
+    
+
+function poliStart() {
+
+    poligonoSelect.innerHTML = ""
+    const URL_TO_FETCH = `http://25.7.142.197:8080/plantio/`;
+    fetch(URL_TO_FETCH)
+    .then(function (response) {
+        response.json().then(function (elements) {
+            elements.forEach((element) => {
+                let option = document.createElement("option")
+                option.setAttribute("value",String(element.id))
+                option.innerHTML = String(element.nome);
+                poligonoSelect.appendChild(option)
+            })
+        });
+    })
+    .catch(function (err) {
+        console.error('Failed retrieving information', err);
+    });
+
+}
+
+isInside.onclick = async () => {
+    const color = isInside.style.backgroundColor 
+    const fileList = new FormData();
+    let poligono = document.querySelector("input#poligonoInput")
+
+    for(file of poligono.files)
+        fileList.append('fileList', file)
+
+    const URL_TO_FETCH = `http://25.7.142.197:8080/plantio/check/${poligonoSelect.value}/`
+    await fetch(URL_TO_FETCH, {
+        method: 'POST',
+        body: fileList
+    })
+    .then(function (response) {
+        response.json().then(function (data) {
+            if(data.response)
+                isInside.style.backgroundColor = 'green',isInside.textContent = "Dentro";
+            else
+                isInside.style.backgroundColor = 'red',isInside.textContent = "Fora";
+            setTimeout(function(){ isInside.style.backgroundColor = color,isInside.textContent = "Dentro ou Fora";}, 500);
+            
+        });
+    })
+    .catch(function (err) {
+        console.error('Failed retrieving information', err);
+    });
     
 }

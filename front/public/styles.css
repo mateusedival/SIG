@@ -86,6 +86,12 @@ h3 {
     display: flex;
     align-items: center;
 }
+.Poligono {
+    width: 100%;
+    display: block;
+    align-items: center;
+    justify-content: center; 
+}
 
 label {
     font-size: 22pt;

@@ -11,13 +11,13 @@
 
     <link rel="stylesheet" href="./styles.css">
     <script>
-       var map;
+        var map;
         function initMap() {
         
-            const center = { lat: -24.9434028,lng: -53.4230169};
+            const center = { lat: -2937868.99220626/100000,lng: -6075422.07154195/100000};
             
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 13,
+                zoom: 5,
                 center: center,
             });
             const URL_TO_FETCH = 'http://25.7.142.197:8080/plantio/';
@@ -25,32 +25,42 @@
             fetch(URL_TO_FETCH)
             .then(function (response) {
                 response.json().then(function (data) {
-                    init(data)
+                    data.forEach((x) => {mapMarker(x)})
                 });
             })
             .catch(function (err) {
                 console.error('Failed retrieving information', err);
             });
+
         }
-        function init(points) {
+        function mapMarker(x) {
+            const pos = {lat: x.pontoY/100000, lng: x.pontoX/100000};
+            const marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            })
+            let content = `<div idPlantio=${x.id}><p>Planta: ${x.nome}</p>`+
+                            `<p>Nome Cientifico: ${x.nomeCientifico}</p><p>Foi plantanda em: ${x.data.slice(0,10)}</p>`;
+            const aluno = x.aluno ? true : false
+            if(aluno)
+                content+=`<p>Aluno: ${x.aluno.nome}</p><p>Idade: ${x.aluno.idade}</p><p>Ano: ${x.aluno.serie}</p>Curso: <p>${x.aluno.curso.nome}</p>`;
 
-                points.forEach((x) => {
-                    const pos = {lat: x.pontoX, lng: x.pontoY};
-                    const marker = new google.maps.Marker({
-                        position: pos,
-                        map: map,
-                    });
-                    const infowindow = new google.maps.InfoWindow({
-                        content: `<p>${x.nome}\n<p><p>${x.nomeCientifico}\n</p>`+
-                                `<p>${x.data}\n<p>`,
-                    });
+            content+=`</div>`;
 
-                    marker.addListener("click", () => {
-                        infowindow.open(map, marker);
-                });
+            const infowindow = new google.maps.InfoWindow({
+                content: content
+            });
 
-                })
-            }
+            marker.addListener("click", () => {
+                infowindow.open(map,marker);
+            });
+        }
+        function isInside() {
+            console.log("oi")
+        }
+
+       
+        
     </script>
 </head>
 
@@ -147,6 +157,8 @@
                     <div class="centerH">
                         <label for="alunoSelectEdit">Aluno</label>
                         <select id="alunoSelectEdit"></select>
+                        <label for="foto">Fotos</label> 
+                         <input type="file" id="foto" multiple>
                     </div>
                     <div class="centerH">
                         <button type="button" id="plantioEditBtn">Atualizar</button>
@@ -162,7 +174,7 @@
                     </div>
                     <div class="input">
                         <label for="idadeAlunoEdit">Idade</label>
-                         <input id="idadeAlunoEdit" type="text">
+                        <input id="idadeAlunoEdit" type="text">
                     </div>
                 </div>
                 <div class="centerH">
@@ -184,7 +196,7 @@
                 <div class="centerH">
                     <div class="input">
                         <label for="nomeCursoEdit">Nome</label>
-                         <input id="nomeCursoEdit" type="text">
+                        <input id="nomeCursoEdit" type="text">
                     </div>
                 </div>
                 <div class="centerH">
@@ -195,7 +207,15 @@
         </div>
         
     </div>
-    
+    <div id="poligono" class="Poligono">
+        <div class="input">
+            <label for="poligonoInput">Poligono</label> 
+            <input type="file" id="poligonoInput" multiple>
+            <label for="poligonoSelect">Planta</label>
+            <select id="poligonoSelect"></select>
+            <button id="isInside">Dentro ou Fora</button>
+        </div>  
+    </div>
 
 
     <script src="./bundle.js"></script>
